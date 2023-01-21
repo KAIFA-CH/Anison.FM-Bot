@@ -1,0 +1,24 @@
+{
+  "name": "anison",
+  "version": "0.0.1",
+  "description": "Anison.fm Discord Bot",
+  "main": "start.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Marie <marie@kaifa.ch>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@discordx/importer": "^1.1.10",
+    "@discordx/music": "^4.1.0",
+    "@discordx/utilities": "^5.2.1",
+    "axios": "^1.2.2",
+    "discordx": "^11.5.2",
+    "libsodium-wrappers": "^0.7.10"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
