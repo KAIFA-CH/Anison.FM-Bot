@@ -1,7 +1,7 @@
 import type { CommandInteraction } from "discord.js";
 import { Discord, Slash } from "discordx";
 import { EmbedBuilder } from "discord.js";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 @Discord()
 export class OnAir {
