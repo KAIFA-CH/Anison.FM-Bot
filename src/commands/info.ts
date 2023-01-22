@@ -35,7 +35,7 @@ export class Info {
 
         const invitelink = new ButtonBuilder()
             .setLabel("Invite to Server")
-            .setURL("https://google.com")
+            .setURL("https://discord.com/api/oauth2/authorize?client_id=452498258250694656&permissions=36785216&scope=applications.commands%20bot")
             .setStyle(ButtonStyle.Link);
 
         const buttonRow = new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(radiolink, discordlink, invitelink);
