@@ -29,13 +29,17 @@ export class JoinAndLeave {
                 return;
             }
 
-            const queue = this.player.queue(interaction.guild!);
-            await queue.join(vc);
-            
-            // Add station to the guild queue of the player and when playing respond with message.
-            const status = await queue.playTrack(new CustomTrack(this.player, "Anison.FM", "https://pool.anison.fm:9000/AniSonFM(320)"));
-            if (status) {
-                await interaction.reply({content: `Now playing Anison.FM in ${vc}`, ephemeral: true});
+            if (vc.type == ChannelType.GuildVoice) {
+                const queue = this.player.queue(interaction.guild!);
+                await queue.join(vc);
+                
+                // Add station to the guild queue of the player and when playing respond with message.
+                const status = await queue.playTrack(new CustomTrack(this.player, "Anison.FM", "https://pool.anison.fm:9000/AniSonFM(320)"));
+                if (status) {
+                    await interaction.reply({content: `Now playing Anison.FM in ${vc}`, ephemeral: true});
+                }
+            } else {
+                await interaction.reply({content: `The provided channel is not a Voice Channel!`, ephemeral: true});
             }
     }
 
