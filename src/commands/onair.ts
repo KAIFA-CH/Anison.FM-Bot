@@ -15,7 +15,7 @@ export class OnAir {
         // Check if the current requester has an PFP if not return default PFP
         let pfp: any = await axios.get(`https://anison.fm/resources/avatars/original/${response.data.on_air.order_by}.jpg`).catch(err => {});
 
-        if (pfp && (pfp as AxiosResponse).status === 200) {
+        if (pfp && pfp.status === 200) {
             pfp = `https://anison.fm/resources/avatars/original/${response.data.on_air.order_by}.jpg`;
         } else {
             pfp = "https://anison.fm/resources/avatars/original/0.jpg";
