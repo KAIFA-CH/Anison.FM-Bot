@@ -5,7 +5,7 @@ import { CustomTrack, Player } from "@discordx/music";
 import { PermissionGuard } from "@discordx/utilities";
 
 @Discord()
-export class Join {
+export class JoinAndLeave {
     player;
 
     constructor() {
@@ -36,6 +36,20 @@ export class Join {
             const status = await queue.playTrack(new CustomTrack(this.player, "Anison.FM", "https://pool.anison.fm:9000/AniSonFM(320)"));
             if (status) {
                 await interaction.reply({content: `Now playing Anison.FM in ${vc}`, ephemeral: true});
+            }
+    }
+
+    @Slash({ description: "Leave the VC", name: "leave" })
+    @Guard(PermissionGuard(["Administrator"]))
+    async leave(interaction: CommandInteraction): Promise<void> {
+            // Check if the bot is in a VC, clear queue and disconnect from the vc else if not in VC respond with an error message.
+            if (interaction.client.channels.cache.some(channel => (channel.type === ChannelType.GuildVoice && channel.members.has(interaction.client.user.id)))) {
+                const queue = this.player.queue(interaction.guild!);
+                await queue.clearTracks();
+                await queue.leave();
+                await interaction.reply({content: `Disconnected from VC`, ephemeral: true});
+            } else {
+                await interaction.reply({content: `I'm not in a channel`, ephemeral: true});
             }
     }
 
