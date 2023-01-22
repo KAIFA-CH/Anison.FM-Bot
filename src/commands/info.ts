@@ -1,5 +1,5 @@
 import type { CommandInteraction, MessageActionRowComponentBuilder } from "discord.js";
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, version as discordjsversion } from "discord.js";
 import { Discord, Slash } from "discordx";
 
 @Discord()
@@ -17,8 +17,9 @@ export class Info {
             .setTimestamp()
             .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
             .addFields(
-                { name: 'Servers', value: interaction.client.guilds.cache.size.toString(), inline: true },
-                { name: 'Active Connections', value: activeconnections.size.toString(), inline: true },
+                { name: "Servers", value: interaction.client.guilds.cache.size.toString(), inline: true },
+                { name: "Active Connections", value: activeconnections.size.toString(), inline: true },
+                { name: "Discord.js Version", value: discordjsversion, inline: true}
             );
 
         // Create all Buttons which link to different sites and then reply with the embed and buttons
