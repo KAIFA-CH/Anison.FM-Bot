@@ -12,7 +12,7 @@ export class JoinAndLeave {
         this.player = new Player();
     }
 
-    @Slash({ description: "Joins a VC and starts playing a station.", name: "join" })
+    @Slash({ description: "Joins a VC and starts playing the station.", name: "join" })
     @Guard(PermissionGuard(["Administrator"]))
     async join(
         @SlashOption({
