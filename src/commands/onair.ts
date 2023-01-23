@@ -24,7 +24,7 @@ export class OnAir {
         // Build embed with song title, anime name and requester info
         const onairEmbed = new EmbedBuilder()
             .setTimestamp()
-            .setThumbnail(`https://anison.fm${response.data.poster.match(/src=\"([^]*?)\"/)[1]}`)
+            .setThumbnail(`https://anison.fm${response.data.poster.match(/src=\"([^]*?)\"/)[1].replace("200", "150")}`)
             .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
             .setTitle(`Currently Playing: ${response.data.on_air.track}`)
             .setAuthor({ name: `Song Requested by ${response.data.on_air.order_by_login}`, iconURL: pfp, url: `https://en.anison.fm/user/${response.data.on_air.order_by}` })
