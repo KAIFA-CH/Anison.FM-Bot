@@ -24,7 +24,7 @@ export class JoinAndLeave {
         vc: VoiceChannel,
         interaction: CommandInteraction): Promise<void> {
             // Check if the bot is already in a VC and cancel the continuation of the interaction after reply
-            if (interaction.client.channels.cache.some(channel => (channel.type === ChannelType.GuildVoice && channel.members.has(interaction.client.user.id)))) {
+            if (interaction.guild!.channels.cache.some(channel => (channel.type === ChannelType.GuildVoice && channel.members.has(interaction.client.user.id)))) {
                 await interaction.reply({content: `I'm already in a channel`, ephemeral: true});
                 return;
             }
@@ -47,7 +47,7 @@ export class JoinAndLeave {
     @Guard(PermissionGuard(["Administrator"]))
     async leave(interaction: CommandInteraction): Promise<void> {
             // Check if the bot is in a VC, clear queue and disconnect from the vc else if not in VC respond with an error message.
-            if (interaction.client.channels.cache.some(channel => (channel.type === ChannelType.GuildVoice && channel.members.has(interaction.client.user.id)))) {
+            if (interaction.guild!.channels.cache.some(channel => (channel.type === ChannelType.GuildVoice && channel.members.has(interaction.client.user.id)))) {
                 const queue = this.player.queue(interaction.guild!);
                 await queue.clearTracks();
                 await queue.leave();
